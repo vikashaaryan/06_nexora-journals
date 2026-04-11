@@ -3,291 +3,278 @@
 @section('title', 'Article Processing Charges')
 
 @section('content')
-    <div class="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h1 class="text-5xl font-bold text-gray-900 mb-6">Article Processing Charges</h1>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Transparent pricing for open access publication. We believe in fair and sustainable publishing practices that support the global research community.</p>
+<section class="bg-[#f5f5f5]">
+    <!-- Hero -->
+    <div class="bg-[#1f57b5] py-16 text-white md:py-20">
+        <div class="mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-2 text-sm font-semibold backdrop-blur">
+                🌍 Prices shown in EUR
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-12 mb-16">
-                <!-- APC Overview -->
-                <div class="lg:col-span-2 space-y-8">
-                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">APC Structure</h2>
-                        <div class="overflow-x-auto">
-                            <table class="w-full">
-                                <thead>
-                                    <tr class="border-b border-gray-200">
-                                        <th class="text-left py-4 px-4 font-semibold text-gray-900">Journal</th>
-                                        <th class="text-left py-4 px-4 font-semibold text-gray-900">APC</th>
-                                        <th class="text-left py-4 px-4 font-semibold text-gray-900">Currency</th>
-                                        <th class="text-left py-4 px-4 font-semibold text-gray-900">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-100">
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">Journal of Advanced Research</td>
-                                        <td class="py-4 px-4 text-gray-900">$299</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">International Journal of Innovation</td>
-                                        <td class="py-4 px-4 text-gray-900">$249</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">Journal of Health Sciences</td>
-                                        <td class="py-4 px-4 text-gray-900">$349</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">Education Research Quarterly</td>
-                                        <td class="py-4 px-4 text-gray-900">$199</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">Sustainable Development Journal</td>
-                                        <td class="py-4 px-4 text-gray-900">$279</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                    <tr class="hover:bg-gray-50">
-                                        <td class="py-4 px-4 text-gray-900 font-medium">Business & Economics Review</td>
-                                        <td class="py-4 px-4 text-gray-900">$229</td>
-                                        <td class="py-4 px-4 text-gray-600">USD</td>
-                                        <td class="py-4 px-4">
-                                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">Active</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <h1 class="mt-6 text-3xl font-semibold md:text-5xl">Article Processing Charges</h1>
+
+            <p class="mx-auto mt-6 max-w-4xl text-base leading-8 text-blue-50 md:text-xl">
+                Fortune Journals operates on an open access model. All accepted articles are made freely
+                available worldwide. Publication costs are covered through a one-time Article Processing
+                Charge (APC) paid by authors or their institutions upon acceptance.
+            </p>
+        </div>
+    </div>
+
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <!-- Top Cards -->
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            @foreach($apcCards as $card)
+                <div class="border-l-4 border-[#1f57b5] bg-slate-100 p-6">
+                    <h3 class="text-xl font-semibold text-[#1f57b5]">
+                        {{ $card['icon'] }} {{ $card['title'] }}
+                    </h3>
+                    <p class="mt-3 text-[15px] leading-8 text-slate-700">
+                        {{ $card['description'] }}
+                    </p>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Text Content -->
+        <div class="mt-10 space-y-8 text-[17px] leading-9 text-slate-700">
+            <p>
+                Fortune Journals provides rapid publication of articles within 15-20 days, supported by a dedicated editorial team that ensures timely editorial activities.
+            </p>
+
+            <div>
+                <h2 class="text-2xl font-semibold text-slate-800">Frequently Asked Questions (FAQs)</h2>
+
+                <div class="mt-6 space-y-6">
+                    <div>
+                        <h3 class="font-semibold text-slate-800">1. Why does Fortune Journals charge a publication fee?</h3>
+                        <p>
+                            Fortune Journals is an open-access platform, meaning all articles are freely accessible to readers worldwide.
+                            The Article Publication Fee covers editorial and production costs, website hosting, article formatting in HTML,
+                            PDF, and XML, and submission to electronic citation databases like CrossRef, Academia.edu, ResearchGate,
+                            WorldCat, DRJI, Scilit, Microsoft Academic, and Google Scholar.
+                        </p>
                     </div>
 
-                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">What APC Covers</h2>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div class="space-y-4">
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Peer Review Management</h3>
-                                        <p class="text-gray-600 text-sm">Coordination of expert reviewers and editorial oversight</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Editorial Processing</h3>
-                                        <p class="text-gray-600 text-sm">Manuscript editing, formatting, and quality assurance</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Open Access Hosting</h3>
-                                        <p class="text-gray-600 text-sm">Permanent online publication and archiving</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="space-y-4">
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">DOI Registration</h3>
-                                        <p class="text-gray-600 text-sm">Digital Object Identifier for permanent citation</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Indexing Services</h3>
-                                        <p class="text-gray-600 text-sm">Submission to academic databases and search engines</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-start">
-                                    <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mt-1 mr-4 flex-shrink-0">
-                                        <svg class="w-3 h-3 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-semibold text-gray-900">Marketing & Promotion</h3>
-                                        <p class="text-gray-600 text-sm">Article promotion and visibility enhancement</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-800">Our financial goals include:</h3>
+                        <ul class="mt-2 space-y-1">
+                            <li>Recovering production-related costs.</li>
+                            <li>Generating sufficient revenue to sustain and grow our editorial activities.</li>
+                            <li>Gradually reducing publication charges over time.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">2. Who is responsible for the Article Processing Charges?</h3>
+                        <p>
+                            The payment is typically made by the corresponding author, co-authors, or their affiliated university or institution upon acceptance of the article.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">3. When should payment be made?</h3>
+                        <p>
+                            Payment should be arranged by the corresponding author or their institution immediately after receiving notification of acceptance. APCs may be waived if an agreement is established prior to submission.
+                        </p>
+                        <p class="mt-2 italic font-semibold text-slate-800">
+                            Please note that articles will not be published until the charges are settled.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">4. How can I make a payment?</h3>
+                        <p>Payments can be made in two ways:</p>
+                        <ul class="mt-2 space-y-1">
+                            <li>Wire/Bank transfer</li>
+                            <li>Card payment</li>
+                        </ul>
+                        <p class="mt-2">
+                            Please note that taxes may apply according to the payee's country policies, and additional transaction fees may also be charged.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">5. Who is eligible for a waiver on Article Processing Charges?</h3>
+                        <p>
+                            Waiver requests will be considered on a case-by-case basis and must be submitted during the submission process; requests after manuscript processing will not be accepted.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">6. Is payment required if my manuscript is rejected?</h3>
+                        <p>No, Article Processing Charges do not apply to rejected articles.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">7. Are reprints included in the Article Processing Charges (APCs)?</h3>
+                        <p>No, APCs do not cover reprint costs, which are optional and must be ordered separately.</p>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-slate-800">8. Are there any withdrawal charges?</h3>
+                        <p>
+                            Yes, if an author wishes to withdraw an accepted article, a withdrawal fee of 30% of the publication fee will apply.
+                            If an article is withdrawn after payment, no refunds (full or partial) will be issued.
+                        </p>
+                    </div>
+
+                    <div>
+                        <p>
+                            For any queries, please contact us at
+                            <a href="mailto:contact@fortunejournals.com" class="font-semibold text-[#1f57b5] hover:underline">contact@fortunejournals.com</a>
+                        </p>
+                        <p>
+                            Submit Your Article to Your
+                            <a href="{{ route('journals') }}" class="font-semibold text-[#1f57b5] hover:underline">Preferred Journals.</a>
+                        </p>
+                    </div>
+
+                    <div>
+                        <p>
+                            Please refer to the table below for Article Processing Charges for the journals. Fortune Journals offers discounts on Article Processing Charges (APCs) for papers authored by corresponding authors from middle- and low-income countries. For potential discounts, please contact the Editorial Office before submission.
+                        </p>
+                        <p class="mt-2">
+                            <strong>Note:</strong> APCs are based on countries classified by the
+                            <span class="font-semibold text-[#1f57b5]">World Bank.</span>
+                        </p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Sidebar -->
-                <div class="space-y-8">
-                    <!-- Payment Options -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Payment Options</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center p-4 border border-gray-200 rounded-lg">
-                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Credit/Debit Card</div>
-                                    <div class="text-sm text-gray-600">Visa, MasterCard, American Express</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-4 border border-gray-200 rounded-lg">
-                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Bank Transfer</div>
-                                    <div class="text-sm text-gray-600">Wire transfer or direct deposit</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center p-4 border border-gray-200 rounded-lg">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
-                                    <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">PayPal</div>
-                                    <div class="text-sm text-gray-600">Secure online payment</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- APC by Journal -->
+        <div class="mt-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-semibold text-[#1f57b5] md:text-4xl">APC by Journal</h2>
+                <div class="mx-auto mt-4 h-1 w-28 bg-[#1f57b5]"></div>
+            </div>
 
-                    <!-- Waivers & Discounts -->
-                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border border-blue-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Waivers & Discounts</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-1 mr-3 flex-shrink-0">
-                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Developing Countries</div>
-                                    <div class="text-sm text-gray-600">50% waiver for authors from low-income countries</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-1 mr-3 flex-shrink-0">
-                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Institutional Membership</div>
-                                    <div class="text-sm text-gray-600">20% discount for member institutions</div>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-1 mr-3 flex-shrink-0">
-                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Reviewers & Editors</div>
-                                    <div class="text-sm text-gray-600">Complimentary publication for active contributors</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="{{ route('membership') }}" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mt-4">
-                            Learn About Membership
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            <div class="mt-8 border-t border-slate-200 pt-8">
+                <p class="text-[17px] text-slate-700">
+                    APC tiers below follow the <span class="font-semibold text-[#1f57b5]">World Bank country income classification.</span>
+                </p>
+
+                <!-- Legend -->
+                <div class="mt-5 flex flex-wrap gap-6 text-sm font-medium text-slate-700">
+                    <div class="flex items-center gap-2"><span class="h-4 w-4 rounded-full bg-green-700"></span> High Income</div>
+                    <div class="flex items-center gap-2"><span class="h-4 w-4 rounded-full bg-orange-600"></span> Middle Income</div>
+                    <div class="flex items-center gap-2"><span class="h-4 w-4 rounded-full bg-red-600"></span> Low Income</div>
+                    <div class="flex items-center gap-2"><span class="h-4 w-4 rounded-full bg-blue-600"></span> Free / Waived</div>
+                </div>
+
+                <!-- Search + Count -->
+                <div class="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div class="relative w-full max-w-lg">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" />
                             </svg>
-                        </a>
+                        </span>
+                        <input
+                            type="text"
+                            id="journalSearch"
+                            placeholder="Search journal name or ISSN..."
+                            class="w-full border border-slate-300 bg-white py-3 pl-12 pr-4 text-sm outline-none focus:border-[#1f57b5]"
+                        >
                     </div>
 
-                    <!-- Contact Support -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Need Help?</h3>
-                        <p class="text-gray-600 mb-4">Our support team is here to assist you with any questions about APC or payment options.</p>
-                        <div class="space-y-3">
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                </svg>
-                                apc@nexorajournals.com
-                            </div>
-                            <div class="flex items-center text-sm text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                                </svg>
-                                +1 (555) 123-4567
-                            </div>
-                        </div>
+                    <div class="inline-flex items-center rounded-full bg-[#1f57b5] px-6 py-3 text-sm font-semibold text-white">
+                        <span id="journalCount">{{ count($apcRows) }}</span> Journals
                     </div>
                 </div>
-            </div>
 
-            <!-- FAQ Section -->
-            <div class="bg-white rounded-3xl p-12 shadow-xl border border-gray-100">
-                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Frequently Asked Questions</h2>
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">When is the APC charged?</h3>
-                        <p class="text-gray-600">The APC is only charged after your manuscript has been accepted for publication. There are no submission fees or hidden costs.</p>
+                <!-- Table -->
+                <div class="mt-5 overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full" id="apcTable">
+                            <thead>
+                                <tr class="bg-[#1f57b5] text-left text-white">
+                                    <th class="px-4 py-4 text-sm font-semibold">Journal Name</th>
+                                    <th class="px-4 py-4 text-sm font-semibold">ISSN</th>
+                                    <th class="px-4 py-4 text-center text-sm font-semibold" colspan="3">Article Processing Charges (EUR)</th>
+                                </tr>
+                                <tr class="bg-[#2d67c4] text-white">
+                                    <th class="px-4 py-3"></th>
+                                    <th class="px-4 py-3"></th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold">High Income</th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold">Middle Income</th>
+                                    <th class="px-4 py-3 text-center text-sm font-semibold">Low Income</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($apcRows as $row)
+                                    <tr class="border-t border-slate-200 apc-row odd:bg-slate-50">
+                                        <td class="px-4 py-4 text-[15px] font-medium text-[#1f57b5]">{{ $row['journal'] }}</td>
+                                        <td class="px-4 py-4 text-[15px] text-slate-700">{{ $row['issn'] }}</td>
+                                        <td class="px-4 py-4 text-center">
+                                            <span class="inline-block rounded-md bg-green-100 px-4 py-1.5 text-sm font-semibold text-green-700">{{ $row['high'] }}</span>
+                                        </td>
+                                        <td class="px-4 py-4 text-center">
+                                            <span class="inline-block rounded-md bg-amber-100 px-4 py-1.5 text-sm font-semibold text-orange-700">{{ $row['middle'] }}</span>
+                                        </td>
+                                        <td class="px-4 py-4 text-center">
+                                            <span class="inline-block rounded-md bg-rose-100 px-4 py-1.5 text-sm font-semibold text-red-600">{{ $row['low'] }}</span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Can I get a waiver?</h3>
-                        <p class="text-gray-600">Yes, we offer waivers for authors from developing countries and discounts for institutional members. Contact us to learn more.</p>
+                </div>
+
+                <p class="mt-4 text-sm text-slate-500">
+                    Showing <span id="visibleCount">{{ count($apcRows) }}</span> of {{ count($apcRows) }} journals
+                </p>
+
+                <!-- Bottom CTA -->
+                <div class="mt-12 rounded-md bg-[#1f57b5] px-6 py-8 text-white md:flex md:items-center md:justify-between md:gap-8">
+                    <div class="max-w-3xl">
+                        <h3 class="text-2xl font-semibold">🆕 APC Discounts Available</h3>
+                        <p class="mt-3 text-base leading-8 text-blue-50">
+                            Fortune Journals offers discounts for corresponding authors from middle and low-income countries.
+                            Eligible authors may apply for a partial APC discount. Please contact our editorial office before
+                            submitting your manuscript to discuss eligibility.
+                        </p>
                     </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">What if my manuscript is rejected?</h3>
-                        <p class="text-gray-600">If your manuscript is not accepted, no APC will be charged. Our peer review process ensures only high-quality research is published.</p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-900 mb-3">Is the APC refundable?</h3>
-                        <p class="text-gray-600">APCs are non-refundable once payment is processed and publication begins. We offer clear timelines and no rush decisions.</p>
+
+                    <div class="mt-6 md:mt-0">
+                        <a href="{{ route('contact') }}"
+                           class="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 text-base font-semibold text-[#1f57b5] transition hover:bg-slate-100">
+                            ✉️ Contact Editorial Office
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('journalSearch');
+        const rows = document.querySelectorAll('.apc-row');
+        const visibleCount = document.getElementById('visibleCount');
+        const journalCount = document.getElementById('journalCount');
+
+        if (searchInput) {
+            searchInput.addEventListener('input', function () {
+                const search = this.value.toLowerCase().trim();
+                let count = 0;
+
+                rows.forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    const match = text.includes(search);
+
+                    row.style.display = match ? '' : 'none';
+
+                    if (match) count++;
+                });
+
+                visibleCount.textContent = count;
+                journalCount.textContent = count;
+            });
+        }
+    });
+</script>
 @endsection

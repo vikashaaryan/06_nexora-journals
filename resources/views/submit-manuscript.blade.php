@@ -3,232 +3,264 @@
 @section('title', 'Submit Manuscript')
 
 @section('content')
-    <div class="pt-24 pb-16 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h1 class="text-5xl font-bold text-gray-900 mb-6">Submit Your Manuscript</h1>
-                <p class="text-xl text-gray-600 max-w-4xl mx-auto">Join our community of researchers by submitting your groundbreaking work. We provide a streamlined submission process with expert peer review.</p>
-            </div>
+<section class="bg-[#f5f5f5] py-14 md:py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <div class="grid lg:grid-cols-3 gap-12">
-                <!-- Submission Form -->
-                <div class="lg:col-span-2">
-                    <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-8">Manuscript Submission Form</h2>
-                        <form class="space-y-6">
-                            <!-- Personal Information -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-900">Personal Information</h3>
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
-                                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                    </div>
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
-                                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                                    </div>
-                                </div>
+        <!-- Heading -->
+        <div class="text-center">
+            <h1 class="text-3xl font-semibold text-slate-800 md:text-5xl">Submit Your Manuscript</h1>
+            <div class="mx-auto mt-5 h-1 w-32 bg-[#1f4f9d]"></div>
+            <p class="mx-auto mt-6 max-w-4xl text-base leading-8 text-slate-600 md:text-lg">
+                Join our community of researchers by submitting your original work. We provide a streamlined editorial process, expert peer review, and open access publication.
+            </p>
+        </div>
+
+        <div class="mt-14 grid gap-8 lg:grid-cols-3">
+            <!-- Main Form -->
+            <div class="lg:col-span-2">
+                <div class="border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+                    <h2 class="border-b border-slate-200 pb-4 text-2xl font-semibold text-slate-800">
+                        Manuscript Submission Form
+                    </h2>
+
+                    <form class="mt-8 space-y-10">
+                        <!-- Personal Information -->
+                        <div>
+                            <h3 class="mb-5 text-xl font-semibold text-[#1f4f9d]">Personal Information</h3>
+
+                            <div class="grid gap-5 md:grid-cols-2">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                                    <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">First Name *</label>
+                                    <input type="text" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" required>
                                 </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Affiliation</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="University/Organization">
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Last Name *</label>
+                                    <input type="text" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" required>
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Email Address *</label>
+                                    <input type="email" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" required>
+                                </div>
+
+                                <div class="md:col-span-2">
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Affiliation</label>
+                                    <input type="text" placeholder="University / Organization" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- Manuscript Details -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-900">Manuscript Details</h3>
+                        <!-- Manuscript Details -->
+                        <div>
+                            <h3 class="mb-5 text-xl font-semibold text-[#1f4f9d]">Manuscript Details</h3>
+
+                            <div class="grid gap-5">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Journal Selection *</label>
-                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Journal Selection *</label>
+                                    <select class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" required>
                                         <option value="">Select a journal</option>
-                                        <option value="jar">Journal of Advanced Research</option>
-                                        <option value="iji">International Journal of Innovation</option>
-                                        <option value="jhs">Journal of Health Sciences</option>
-                                        <option value="erq">Education Research Quarterly</option>
-                                        <option value="sdj">Sustainable Development Journal</option>
-                                        <option value="ber">Business & Economics Review</option>
+                                        <option>Cardiology and Cardiovascular Medicine</option>
+                                        <option>Archives of Clinical and Biomedical Research</option>
+                                        <option>Archives of Microbiology & Immunology</option>
+                                        <option>Journal of Pharmacy and Pharmacology Research</option>
+                                        <option>Journal of Surgery and Research</option>
+                                        <option>Dental Research and Oral Health</option>
                                     </select>
                                 </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Manuscript Title *</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Manuscript Title *</label>
+                                    <input type="text" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" required>
                                 </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Abstract *</label>
-                                    <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Provide a brief summary of your research..." required></textarea>
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Abstract *</label>
+                                    <textarea rows="5" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]" placeholder="Provide a brief summary of your research..." required></textarea>
                                 </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Keywords</label>
-                                    <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Separate keywords with commas">
+                                    <label class="mb-2 block text-sm font-medium text-slate-700">Keywords</label>
+                                    <input type="text" placeholder="Separate keywords with commas" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- File Upload -->
+                        <div>
+                            <h3 class="mb-5 text-xl font-semibold text-[#1f4f9d]">File Upload</h3>
+
+                            <div class="border border-dashed border-slate-300 bg-slate-50 p-8 text-center">
+                                <svg class="mx-auto h-12 w-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                </svg>
+
+                                <p class="mt-4 text-base text-slate-700">
+                                    Drag and drop your manuscript file here, or click below to browse
+                                </p>
+                                <p class="mt-2 text-sm text-slate-500">
+                                    Supported formats: PDF, DOC, DOCX (Max 50MB)
+                                </p>
+
+                                <input type="file" class="hidden" accept=".pdf,.doc,.docx" id="manuscript-file">
+
+                                <label for="manuscript-file"
+                                       class="mt-5 inline-block cursor-pointer bg-[#1f4f9d] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#173d7c]">
+                                    Choose File
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Co Authors -->
+                        <div>
+                            <h3 class="mb-5 text-xl font-semibold text-[#1f4f9d]">Co-Authors</h3>
+
+                            <div id="co-authors-container" class="space-y-4">
+                                <div class="grid gap-4 md:grid-cols-2">
+                                    <input type="text" placeholder="Co-author name" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
+                                    <input type="email" placeholder="Co-author email" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
                                 </div>
                             </div>
 
-                            <!-- File Upload -->
+                            <button type="button" id="add-co-author" class="mt-4 text-sm font-medium text-[#1f4f9d] hover:underline">
+                                + Add Co-Author
+                            </button>
+                        </div>
+
+                        <!-- Declarations -->
+                        <div>
+                            <h3 class="mb-5 text-xl font-semibold text-[#1f4f9d]">Declarations</h3>
+
                             <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-900">File Upload</h3>
-                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-400 transition-colors">
-                                    <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                                    </svg>
-                                    <p class="text-gray-600 mb-2">Drag and drop your manuscript file here, or click to browse</p>
-                                    <p class="text-sm text-gray-500">Supported formats: PDF, DOC, DOCX (Max 50MB)</p>
-                                    <input type="file" class="hidden" accept=".pdf,.doc,.docx" id="manuscript-file">
-                                    <label for="manuscript-file" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 cursor-pointer mt-4">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                        </svg>
-                                        Choose File
-                                    </label>
-                                </div>
-                            </div>
+                                <label class="flex items-start gap-3">
+                                    <input type="checkbox" class="mt-1" required>
+                                    <span class="text-sm leading-7 text-slate-600">
+                                        I confirm that this manuscript has not been published elsewhere and is not under consideration by another journal.
+                                    </span>
+                                </label>
 
-                            <!-- Co-Authors -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-900">Co-Authors</h3>
-                                <div id="co-authors-container">
-                                    <div class="co-author-entry grid md:grid-cols-2 gap-4 mb-4">
-                                        <input type="text" placeholder="Co-author name" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                        <input type="email" placeholder="Co-author email" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                    </div>
-                                </div>
-                                <button type="button" id="add-co-author" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
-                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                                    </svg>
-                                    Add Co-Author
-                                </button>
-                            </div>
+                                <label class="flex items-start gap-3">
+                                    <input type="checkbox" class="mt-1" required>
+                                    <span class="text-sm leading-7 text-slate-600">
+                                        I agree to the terms of the Creative Commons Attribution License (CC BY) for open access publication.
+                                    </span>
+                                </label>
 
-                            <!-- Declarations -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-gray-900">Declarations</h3>
-                                <div class="space-y-3">
-                                    <label class="flex items-start">
-                                        <input type="checkbox" class="mt-1 mr-3 text-blue-600 focus:ring-blue-500" required>
-                                        <span class="text-sm text-gray-600">I confirm that this manuscript has not been published elsewhere and is not under consideration by another journal.</span>
-                                    </label>
-                                    <label class="flex items-start">
-                                        <input type="checkbox" class="mt-1 mr-3 text-blue-600 focus:ring-blue-500" required>
-                                        <span class="text-sm text-gray-600">I agree to the terms of the Creative Commons Attribution License (CC BY) for open access publication.</span>
-                                    </label>
-                                    <label class="flex items-start">
-                                        <input type="checkbox" class="mt-1 mr-3 text-blue-600 focus:ring-blue-500" required>
-                                        <span class="text-sm text-gray-600">All authors have approved the manuscript and agree with its submission to this journal.</span>
-                                    </label>
-                                </div>
+                                <label class="flex items-start gap-3">
+                                    <input type="checkbox" class="mt-1" required>
+                                    <span class="text-sm leading-7 text-slate-600">
+                                        All authors have approved the manuscript and agree with its submission to this journal.
+                                    </span>
+                                </label>
                             </div>
+                        </div>
 
-                            <!-- Submit Button -->
-                            <div class="pt-6">
-                                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold hover:shadow-lg transition-shadow">
-                                    Submit Manuscript
-                                </button>
-                            </div>
-                        </form>
+                        <!-- Submit -->
+                        <div class="pt-2">
+                            <button type="submit"
+                                    class="w-full bg-[#1f4f9d] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#173d7c]">
+                                Submit Manuscript
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="space-y-6">
+                <div class="border border-slate-200 bg-white shadow-sm">
+                    <div class="bg-[#1f4f9d] px-5 py-4">
+                        <h3 class="text-lg font-semibold text-white">Submission Guidelines</h3>
+                    </div>
+                    <div class="p-5">
+                        <ul class="space-y-3 text-sm leading-7 text-slate-600">
+                            <li>• Manuscripts must be original and unpublished</li>
+                            <li>• Follow journal-specific formatting guidelines</li>
+                            <li>• Include all figures and tables in the manuscript</li>
+                            <li>• Provide complete author information</li>
+                        </ul>
+
+                        <a href="{{ route('guidelines') }}" class="mt-5 inline-block text-sm font-medium text-[#1f4f9d] hover:underline">
+                            View Full Guidelines →
+                        </a>
                     </div>
                 </div>
 
-                <!-- Sidebar -->
-                <div class="space-y-8">
-                    <!-- Submission Guidelines -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Submission Guidelines</h3>
-                        <div class="space-y-3 text-sm text-gray-600">
-                            <div class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Manuscripts must be original and unpublished
-                            </div>
-                            <div class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Follow journal-specific formatting guidelines
-                            </div>
-                            <div class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Include all figures and tables in the manuscript
-                            </div>
-                            <div class="flex items-start">
-                                <svg class="w-4 h-4 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                Provide complete author information
+                <div class="border border-slate-200 bg-white shadow-sm">
+                    <div class="bg-[#1f4f9d] px-5 py-4">
+                        <h3 class="text-lg font-semibold text-white">Processing Timeline</h3>
+                    </div>
+                    <div class="space-y-4 p-5">
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-[#1f4f9d]">1</div>
+                            <div>
+                                <p class="font-medium text-slate-800">Initial Review</p>
+                                <p class="text-sm text-slate-500">2–3 weeks</p>
                             </div>
                         </div>
-                        <a href="{{ route('guidelines') }}" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium mt-4">
-                            View Full Guidelines
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
-                    </div>
 
-                    <!-- Processing Timeline -->
-                    <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Processing Timeline</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                    <span class="text-blue-600 font-semibold text-sm">1</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Initial Review</div>
-                                    <div class="text-sm text-gray-600">2-3 weeks</div>
-                                </div>
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-[#1f4f9d]">2</div>
+                            <div>
+                                <p class="font-medium text-slate-800">Peer Review</p>
+                                <p class="text-sm text-slate-500">4–8 weeks</p>
                             </div>
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                    <span class="text-blue-600 font-semibold text-sm">2</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Peer Review</div>
-                                    <div class="text-sm text-gray-600">4-8 weeks</div>
-                                </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-[#1f4f9d]">3</div>
+                            <div>
+                                <p class="font-medium text-slate-800">Revision</p>
+                                <p class="text-sm text-slate-500">2–4 weeks</p>
                             </div>
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                    <span class="text-blue-600 font-semibold text-sm">3</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Revision</div>
-                                    <div class="text-sm text-gray-600">2-4 weeks</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
-                                    <span class="text-blue-600 font-semibold text-sm">4</span>
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">Publication</div>
-                                    <div class="text-sm text-gray-600">1-2 weeks</div>
-                                </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-sm font-semibold text-[#1f4f9d]">4</div>
+                            <div>
+                                <p class="font-medium text-slate-800">Publication</p>
+                                <p class="text-sm text-slate-500">1–2 weeks</p>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- APC Information -->
-                    <div class="bg-gradient-to-br from-green-50 to-blue-50 rounded-2xl p-6 border border-green-100">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Article Processing Charges</h3>
-                        <div class="text-3xl font-bold text-green-600 mb-2">$299</div>
-                        <p class="text-gray-600 mb-4">One-time fee for accepted manuscripts</p>
-                        <a href="{{ route('apc') }}" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium">
-                            Learn More
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
+                <div class="border border-slate-200 bg-white shadow-sm">
+                    <div class="bg-[#1f4f9d] px-5 py-4">
+                        <h3 class="text-lg font-semibold text-white">Article Processing Charges</h3>
+                    </div>
+                    <div class="p-5">
+                        <p class="text-3xl font-bold text-[#1f4f9d]">$299</p>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">
+                            One-time fee for accepted manuscripts.
+                        </p>
+
+                        <a href="{{ route('apc') }}" class="mt-5 inline-block text-sm font-medium text-[#1f4f9d] hover:underline">
+                            Learn More →
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addBtn = document.getElementById('add-co-author');
+        const container = document.getElementById('co-authors-container');
+
+        if (addBtn && container) {
+            addBtn.addEventListener('click', function () {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'grid gap-4 md:grid-cols-2';
+                wrapper.innerHTML = `
+                    <input type="text" placeholder="Co-author name" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
+                    <input type="email" placeholder="Co-author email" class="w-full border border-slate-300 px-4 py-3 text-sm outline-none transition focus:border-[#1f4f9d]">
+                `;
+                container.appendChild(wrapper);
+            });
+        }
+    });
+</script>
 @endsection

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class PageController extends Controller
 {
     public function home()
@@ -171,16 +169,16 @@ class PageController extends Controller
 
         $countries = [
             'USA & Americas' => [
-                'USA', 'Brazil', 'Canada', 'Mexico'
+                'USA', 'Brazil', 'Canada', 'Mexico',
             ],
             'Asia-Pacific & Middle East' => [
                 'Australia', 'China', 'Hong Kong', 'India', 'Indonesia', 'Japan', 'Malaysia',
-                'Philippines', 'Singapore', 'South Korea', 'Taiwan', 'Thailand', 'UAE'
+                'Philippines', 'Singapore', 'South Korea', 'Taiwan', 'Thailand', 'UAE',
             ],
             'Europe' => [
                 'Austria', 'Denmark', 'Finland', 'France', 'Germany', 'Italy', 'Netherlands',
                 'Norway', 'Poland', 'Romania', 'South Africa', 'Spain', 'Switzerland',
-                'Turkey', 'UK', 'Ukraine'
+                'Turkey', 'UK', 'Ukraine',
             ],
         ];
 
@@ -225,7 +223,150 @@ class PageController extends Controller
 
     public function journals()
     {
-        return view('journals');
+        $journals = [
+            [
+                'title' => 'Cardiology and Cardiovascular Medicine',
+                'issn' => '2572-9292',
+                'if' => '5.6',
+                'image' => 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'cardiology-and-cardiovascular-medicine',
+            ],
+            [
+                'title' => 'Archives of Clinical and Biomedical Research',
+                'issn' => '2572-5017',
+                'if' => '5.8',
+                'image' => 'https://images.unsplash.com/photo-1532187643603-ba119ca4109e?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'archives-of-clinical-and-biomedical-research',
+            ],
+            [
+                'title' => 'Archives of Microbiology & Immunology',
+                'issn' => '2572-9365',
+                'if' => '3.5',
+                'image' => 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'archives-of-microbiology-immunology',
+            ],
+            [
+                'title' => 'Journal of Pharmacy and Pharmacology Research',
+                'issn' => '2578-1553',
+                'if' => '3.3',
+                'image' => 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-pharmacy-and-pharmacology-research',
+            ],
+            [
+                'title' => 'Journal of Surgery and Research',
+                'issn' => '2640-1002',
+                'if' => '4.2',
+                'image' => 'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-surgery-and-research',
+            ],
+            [
+                'title' => 'Journal of Pediatrics, Perinatology and Child Health',
+                'issn' => '2641-7405',
+                'if' => '4.8',
+                'image' => 'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-pediatrics-perinatology-and-child-health',
+            ],
+            [
+                'title' => 'Fortune Journal of Health Sciences',
+                'issn' => '2644-2906',
+                'if' => '6.2',
+                'image' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'fortune-journal-of-health-sciences',
+            ],
+            [
+                'title' => 'Dental Research and Oral Health',
+                'issn' => '2641-7413',
+                'if' => '3.1',
+                'image' => 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'dental-research-and-oral-health',
+            ],
+            [
+                'title' => 'Archives of Internal Medicine Research',
+                'issn' => '2688-5654',
+                'if' => '8.1',
+                'image' => 'https://images.unsplash.com/photo-1516549655669-df83a0774514?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'archives-of-internal-medicine-research',
+            ],
+            [
+                'title' => 'Obstetrics and Gynecology Research',
+                'issn' => '2637-4560',
+                'if' => '3.6',
+                'image' => 'https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'obstetrics-and-gynecology-research',
+            ],
+            [
+                'title' => 'Journal of Analytical Techniques and Research',
+                'issn' => '2687-8038',
+                'if' => '2.8',
+                'image' => 'https://images.unsplash.com/photo-1532634993-15f421e42ec0?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-analytical-techniques-and-research',
+            ],
+            [
+                'title' => 'Archives of Nephrology and Urology',
+                'issn' => '2644-2833',
+                'if' => '3.3',
+                'image' => 'https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'archives-of-nephrology-and-urology',
+            ],
+            [
+                'title' => 'Anesthesia and Clinical Care',
+                'issn' => '2687-7996',
+                'if' => '3.1',
+                'image' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'anesthesia-and-clinical-care',
+            ],
+            [
+                'title' => 'Journal of Womens Health and Development',
+                'issn' => '2644-2884',
+                'if' => '3.4',
+                'image' => 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-womens-health-and-development',
+            ],
+            [
+                'title' => 'Journal of Spine Research and Surgery',
+                'issn' => '2687-8046',
+                'if' => '3.123',
+                'image' => 'https://images.unsplash.com/photo-1530026186672-2cd00ffc50fe?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-spine-research-and-surgery',
+            ],
+            [
+                'title' => 'Journal of Radiology and Clinical Imaging',
+                'issn' => '2644-2809',
+                'if' => '4.3',
+                'image' => 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-radiology-and-clinical-imaging',
+            ],
+            [
+                'title' => 'Journal of Food Science and Nutrition Research',
+                'issn' => '2642-1100',
+                'if' => '3.8',
+                'image' => 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'journal-of-food-science-and-nutrition-research',
+            ],
+            [
+                'title' => 'International Journal of Applied Biology and Pharmaceutical Technology',
+                'issn' => '0976-4550',
+                'if' => '3.0',
+                'image' => 'https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'international-journal-of-applied-biology-and-pharmaceutical-technology',
+            ],
+            [
+                'title' => 'International Journal of Plant, Animal and Environmental Sciences',
+                'issn' => '2231-4490',
+                'if' => '4.1',
+                'image' => 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'international-journal-of-plant-animal-and-environmental-sciences',
+            ],
+            [
+                'title' => 'Archives of Veterinary Science and Medicine',
+                'issn' => '2689-2308',
+                'if' => '1.1',
+                'image' => 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80',
+                'slug' => 'archives-of-veterinary-science-and-medicine',
+            ],
+        ];
+
+        return view('journals', compact('journals'));
     }
 
     public function journalDetails($slug)
@@ -238,10 +379,61 @@ class PageController extends Controller
         return view('submit-manuscript');
     }
 
-    public function apc()
-    {
-        return view('apc');
-    }
+   public function apc()
+{
+    $apcCards = [
+        [
+            'title' => 'No Submission Fees',
+            'icon' => '✅',
+            'description' => 'APC is charged only upon acceptance — submitting your manuscript is completely free of charge.',
+        ],
+        [
+            'title' => 'Income-Based Discounts',
+            'icon' => '🌍',
+            'description' => 'Tiered APC pricing for authors from middle and low-income countries per World Bank classification.',
+        ],
+        [
+            'title' => 'CC BY 4.0 License',
+            'icon' => '📋',
+            'description' => 'All articles published under Creative Commons Attribution License — free sharing and reuse with proper attribution.',
+        ],
+        [
+            'title' => 'Discounts Available',
+            'icon' => '💵',
+            'description' => 'Authors from low and middle-income countries may be eligible for a partial APC discount. Contact us before submitting your manuscript.',
+        ],
+    ];
+
+    $apcRows = [
+        ['journal' => 'Anesthesia and Critical Care', 'issn' => '2687-7996', 'high' => '€2,300', 'middle' => '€1,380', 'low' => '€828'],
+        ['journal' => 'Archives of Clinical and Biomedical Research', 'issn' => '2572-5017', 'high' => '€1,840', 'middle' => '€1,104', 'low' => '€828'],
+        ['journal' => 'Archives of Clinical and Medical Case Reports', 'issn' => '2575-9655', 'high' => '€2,300', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Archives of Internal Medicine Research', 'issn' => '2688-5654', 'high' => '€2,300', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Archives of Microbiology & Immunology', 'issn' => '2572-9365', 'high' => '€1,380', 'middle' => '€828', 'low' => '€276'],
+        ['journal' => 'Archives of Nephrology and Urology', 'issn' => '2644-2833', 'high' => '€1,380', 'middle' => '€828', 'low' => '€276'],
+        ['journal' => 'Archives of Physiotherapy and Rehabilitation', 'issn' => '3067-932X', 'high' => '€920', 'middle' => '€460', 'low' => '€276'],
+        ['journal' => 'Archives of Veterinary Science and Medicine', 'issn' => '2689-2308', 'high' => '€920', 'middle' => '€460', 'low' => '€276'],
+        ['journal' => 'Cardiology and Cardiovascular Medicine', 'issn' => '2572-9292', 'high' => '€2,300', 'middle' => '€1,380', 'low' => '€460'],
+        ['journal' => 'Dental Research and Oral Health', 'issn' => '2641-7413', 'high' => '€1,840', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Fortune Journal of Health Sciences', 'issn' => '2644-2906', 'high' => '€2,760', 'middle' => '€1,380', 'low' => '€920'],
+        ['journal' => 'International Journal of Applied Biology and Pharmaceutical Technology', 'issn' => '0976-4550', 'high' => '€1,380', 'middle' => '€690', 'low' => '€276'],
+        ['journal' => 'International Journal of Plant, Animal and Environmental Sciences', 'issn' => '2231-4490', 'high' => '€1,380', 'middle' => '€828', 'low' => '€460'],
+        ['journal' => 'Journal of Analytical Techniques and Research', 'issn' => '2687-8038', 'high' => '€920', 'middle' => '€460', 'low' => '€276'],
+        ['journal' => 'Journal of Food Science and Nutrition Research', 'issn' => '2642-1100', 'high' => '€1,840', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Journal of Ophthalmology and Research', 'issn' => '2644-0024', 'high' => '€920', 'middle' => '€460', 'low' => '€276'],
+        ['journal' => 'Journal of Orthopaedics and Sports Medicine', 'issn' => '2688-5115', 'high' => '€2,300', 'middle' => '€1,380', 'low' => '€828'],
+        ['journal' => 'Journal of Pediatrics, Perinatology and Child Health', 'issn' => '2641-7405', 'high' => '€2,760', 'middle' => '€2,300', 'low' => '€920'],
+        ['journal' => 'Journal of Pharmacy and Pharmacology Research', 'issn' => '2578-1553', 'high' => '€1,380', 'middle' => '€690', 'low' => '€276'],
+        ['journal' => 'Journal of Psychiatry and Psychiatric Disorders', 'issn' => '2572-519X', 'high' => '€1,840', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Journal of Radiology and Clinical Imaging', 'issn' => '2644-2809', 'high' => '€1,840', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Journal of Spine Research and Surgery', 'issn' => '2687-8046', 'high' => '€1,380', 'middle' => '€828', 'low' => '€460'],
+        ['journal' => 'Journal of Surgery and Research', 'issn' => '2640-1002', 'high' => '€1,840', 'middle' => '€920', 'low' => '€460'],
+        ['journal' => 'Journal of Womens Health and Development', 'issn' => '2644-2884', 'high' => '€2,760', 'middle' => '€1,380', 'low' => '€276'],
+        ['journal' => 'Obstetrics and Gynecology Research', 'issn' => '2637-4560', 'high' => '€2,300', 'middle' => '€920', 'low' => '€460'],
+    ];
+
+    return view('apc', compact('apcCards', 'apcRows'));
+}
 
     public function editorial()
     {
