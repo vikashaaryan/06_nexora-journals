@@ -369,9 +369,9 @@ class PageController extends Controller
         return view('journals', compact('journals'));
     }
 
-    public function journalDetails($slug)
+    public function journalDetails()
     {
-        return view('journal-details', compact('slug'));
+        return view('journal-details');
     }
 
     public function submit()

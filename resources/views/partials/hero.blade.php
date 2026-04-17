@@ -47,12 +47,7 @@
                 </a>
             </div>
 
-            <!-- Slider Dots -->
-            <div class="mt-8 flex items-center justify-center gap-3">
-                <span class="h-4 w-4 rounded-full border-2 border-white bg-white/20"></span>
-                <span class="h-4 w-4 rounded-full border-2 border-white bg-white/20"></span>
-                <span class="h-4 w-4 rounded-full border-2 border-white bg-slate-700"></span>
-            </div>
+           
         </div>
     </div>
 </section>

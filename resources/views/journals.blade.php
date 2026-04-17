@@ -15,7 +15,7 @@
         <!-- Journal Grid -->
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach($journals as $journal)
-                <a href="{{ route('journal.details', $journal['slug']) }}"
+                <a href="{{ route('journal.details') }}"
                    class="overflow-hidden rounded-md border border-slate-300 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
 
                     <!-- Image -->
