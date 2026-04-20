@@ -10,7 +10,7 @@
             {{ $journal ? 'Edit Journal' : 'Create Journal' }}
         </h2>
 
-        <a href="{{ route('admin.journal.index') }}"
+        <a href="{{ route('admin.journals') }}"
            class="rounded-lg bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300">
             Manage Journals
         </a>

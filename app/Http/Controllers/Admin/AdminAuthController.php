@@ -28,7 +28,7 @@ class AdminAuthController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.journals');
         }
 
         return back()->with('error','Invalid Admin Credentials');

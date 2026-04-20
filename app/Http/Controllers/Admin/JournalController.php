@@ -6,96 +6,75 @@ use App\Http\Controllers\Controller;
 use App\Models\Journal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class JournalController extends Controller
 {
-    public function journalcreate()
-    {
-        $journal = null;
-        return view('admin.journal.journal-create', compact('journal'));
-    }
-
-    public function journalstore(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'issn' => 'required|string|max:255|unique:journals,issn',
-            'nlm_id' => 'nullable|string|max:255',
-            'impact_factor' => 'required|numeric|min:0',
-            'is_active' => 'required|boolean',
-        ]);
-
-        $imagePath = null;
-
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/journals'), $imageName);
-            $imagePath = 'uploads/journals/' . $imageName;
-        }
-
-        Journal::create([
-            'title' => $validated['title'],
-            'image' => $imagePath,
-            'issn' => $validated['issn'],
-            'nlm_id' => $validated['nlm_id'] ?? null,
-            'impact_factor' => $validated['impact_factor'],
-            'is_active' => $validated['is_active'],
-        ]);
-
-        return redirect()->route('admin.journal.index')->with('success', 'Journal created successfully.');
-    }
-
-    public function journalindex()
+    public function index()
     {
         $journals = Journal::latest()->get();
         return view('admin.journal.journal-manage', compact('journals'));
     }
 
-    public function journaledit(Journal $journal)
+    public function create()
+    {
+        $journal = null;
+        return view('admin.journal.journal-create', compact('journal'));
+    }
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'issn' => 'required|string|max:255|unique:journals,issn',
+            'nlm_id' => 'nullable|string|max:255',
+            'impact_factor' => 'nullable|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'is_active' => 'required|boolean',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $name = time() . '_journal.' . $request->image->extension();
+            $request->image->move(public_path('uploads/journals'), $name);
+            $data['image'] = 'uploads/journals/' . $name;
+        }
+
+        Journal::create($data);
+
+        return redirect()->route('admin.journals')->with('success', 'Journal created successfully.');
+    }
+
+    public function edit(Journal $journal)
     {
         return view('admin.journal.journal-create', compact('journal'));
     }
 
-    public function journalupdate(Request $request, Journal $journal)
+    public function update(Request $request, Journal $journal)
     {
-        $validated = $request->validate([
+        $data = $request->validate([
             'title' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'issn' => 'required|string|max:255|unique:journals,issn,' . $journal->id,
             'nlm_id' => 'nullable|string|max:255',
-            'impact_factor' => 'required|numeric|min:0',
+            'impact_factor' => 'nullable|numeric|min:0',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'is_active' => 'required|boolean',
         ]);
-
-        $imagePath = $journal->image;
 
         if ($request->hasFile('image')) {
             if ($journal->image && File::exists(public_path($journal->image))) {
                 File::delete(public_path($journal->image));
             }
 
-            $image = $request->file('image');
-            $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/journals'), $imageName);
-            $imagePath = 'uploads/journals/' . $imageName;
+            $name = time() . '_journal.' . $request->image->extension();
+            $request->image->move(public_path('uploads/journals'), $name);
+            $data['image'] = 'uploads/journals/' . $name;
         }
 
-        $journal->update([
-            'title' => $validated['title'],
-            'image' => $imagePath,
-            'issn' => $validated['issn'],
-            'nlm_id' => $validated['nlm_id'] ?? null,
-            'impact_factor' => $validated['impact_factor'],
-            'is_active' => $validated['is_active'],
-        ]);
+        $journal->update($data);
 
-        return redirect()->route('admin.journal.index')->with('success', 'Journal updated successfully.');
+        return redirect()->route('admin.journals')->with('success', 'Journal updated successfully.');
     }
 
-    public function journaldestroy(Journal $journal)
+    public function destroy(Journal $journal)
     {
         if ($journal->image && File::exists(public_path($journal->image))) {
             File::delete(public_path($journal->image));
@@ -103,6 +82,6 @@ class JournalController extends Controller
 
         $journal->delete();
 
-        return redirect()->route('admin.journal.index')->with('success', 'Journal deleted successfully.');
+        return redirect()->route('admin.journals')->with('success', 'Journal deleted successfully.');
     }
 }

@@ -76,7 +76,6 @@
                 <a href="{{ route('home') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('home') ? 'underline underline-offset-8' : '' }}">Home</a>
                 <a href="{{ route('about') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('about') ? 'underline underline-offset-8' : '' }}">About Us</a>
                 <a href="{{ route('journals') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('journals') || request()->routeIs('journal.details') ? 'underline underline-offset-8' : '' }}">Journals</a>
-                <a href="{{ route('submit') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('submit') ? 'underline underline-offset-8' : '' }}">Submit Manuscript</a>
                 <a href="{{ route('apc') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('apc') ? 'underline underline-offset-8' : '' }}">Articles Processing Charges</a>
                 <a href="{{ route('editorial') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('editorial') ? 'underline underline-offset-8' : '' }}">Editorial Process</a>
                 <a href="{{ route('membership') }}" class="text-[15px] font-medium text-white transition hover:text-sky-200 {{ request()->routeIs('membership') ? 'underline underline-offset-8' : '' }}">Membership</a>
