@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\EboardController;
+use App\Http\Controllers\Admin\IssueController;
 use App\Http\Controllers\Admin\JournalController;
 use App\Http\Controllers\Admin\JournalDashboardController;
 use App\Http\Controllers\Admin\JournalIndexingController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\SubmitmanuscriptController;
+use App\Http\Controllers\Admin\VolumeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -115,6 +119,32 @@ Route::prefix('admin')->group(function () {
 
         Route::delete('/journals/{journal}/submissions/{manuscript}', [SubmitmanuscriptController::class, 'destroy'])
             ->name('journal.submissions.delete');
+
+        Route::get('/journals/{journal}/volumes', [VolumeController::class, 'index'])->name('admin.journal.volumes.index');
+        Route::post('/journals/{journal}/volumes/store', [VolumeController::class, 'store'])->name('admin.journal.volumes.store');
+        Route::get('/journals/{journal}/volumes/edit/{volume}', [VolumeController::class, 'edit'])->name('admin.journal.volumes.edit');
+        Route::post('/journals/{journal}/volumes/update/{volume}', [VolumeController::class, 'update'])->name('admin.journal.volumes.update');
+        Route::delete('/journals/{journal}/volumes/delete/{volume}', [VolumeController::class, 'destroy'])->name('admin.journal.volumes.delete');
+
+        Route::get('/admin/journals/{journal}/issues', [IssueController::class, 'index'])->name('admin.journal.issues.index');
+        Route::post('/admin/journals/{journal}/issues/store', [IssueController::class, 'store'])->name('admin.journal.issues.store');
+        Route::get('/admin/journals/{journal}/issues/edit/{issue}', [IssueController::class, 'edit'])->name('admin.journal.issues.edit');
+        Route::post('/admin/journals/{journal}/issues/update/{issue}', [IssueController::class, 'update'])->name('admin.journal.issues.update');
+        Route::delete('/admin/journals/{journal}/issues/delete/{issue}', [IssueController::class, 'destroy'])->name('admin.journal.issues.delete');
+
+        Route::get('/admin/journals/{journal}/articles', [ArticleController::class, 'index'])->name('admin.journal.articles.index');
+        Route::get('/admin/journals/{journal}/articles/create', [ArticleController::class, 'create'])->name('admin.journal.articles.create');
+        Route::post('/admin/journals/{journal}/articles/store', [ArticleController::class, 'store'])->name('admin.journal.articles.store');
+        Route::get('/admin/journals/{journal}/articles/edit/{article}', [ArticleController::class, 'edit'])->name('admin.journal.articles.edit');
+        Route::post('/admin/journals/{journal}/articles/update/{article}', [ArticleController::class, 'update'])->name('admin.journal.articles.update');
+        Route::delete('/admin/journals/{journal}/articles/delete/{article}', [ArticleController::class, 'destroy'])->name('admin.journal.articles.delete');
+
+        Route::get('/admin/journals/{journal}/eboards', [EboardController::class, 'index'])->name('admin.journal.eboards.index');
+        Route::get('/admin/journals/{journal}/eboards/create', [EboardController::class, 'create'])->name('admin.journal.eboards.create');
+        Route::post('/admin/journals/{journal}/eboards/store', [EboardController::class, 'store'])->name('admin.journal.eboards.store');
+        Route::get('/admin/journals/{journal}/eboards/edit/{eboard}', [EboardController::class, 'edit'])->name('admin.journal.eboards.edit');
+        Route::post('/admin/journals/{journal}/eboards/update/{eboard}', [EboardController::class, 'update'])->name('admin.journal.eboards.update');
+        Route::delete('/admin/journals/{journal}/eboards/delete/{eboard}', [EboardController::class, 'destroy'])->name('admin.journal.eboards.delete');
 
     });
 });

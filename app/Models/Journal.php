@@ -27,16 +27,31 @@ class Journal extends Model
             ->where('is_active', 1)
             ->orderBy('sort_order');
     }
-  
 
     public function pages()
     {
         return $this->hasMany(Page::class);
     }
-    public function manuscripts()
-{
-    return $this->hasMany(\App\Models\ManuScript::class, 'journal_id');
-}
 
-   
+    public function manuscripts()
+    {
+        return $this->hasMany(ManuScript::class, 'journal_id');
+    }
+
+    public function volumes()
+    {
+        return $this->hasMany(Volume::class);
+    }
+    public function issues()
+{
+    return $this->hasMany(\App\Models\Issue::class);
+}
+public function articles()
+{
+    return $this->hasMany(\App\Models\Article::class);
+}
+public function eboards()
+{
+    return $this->hasMany(\App\Models\Eboard::class);
+}
 }
