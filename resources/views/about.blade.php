@@ -216,7 +216,7 @@
                 Join thousands of researchers who have shared their findings with the global scientific community through Fortune Journals.
             </p>
             <div class="mt-8">
-                <a href="{{ route('submit') }}"
+                <a href="{{ route('journal.submit') }}"
                    class="inline-block rounded-md bg-white px-8 py-3 text-lg font-semibold text-[#1f4f9d] transition hover:bg-slate-100">
                     Submit Your Manuscript
                 </a>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Journal;
 use App\Models\Menu;
+use App\Models\ManuScript;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -72,7 +74,6 @@ class PageController extends Controller
     public function journals()
     {
         $journals = Journal::where('is_active', 1)->latest()->get();
-
         return view('journals', compact('journals'));
     }
 
@@ -100,9 +101,60 @@ class PageController extends Controller
         return view('journal-details', compact('journal', 'menus', 'activeMenu', 'page', 'indexings'));
     }
 
-    public function submit()
+    public function manusubmit()
     {
-        return view('submit-manuscript');
+        $journals = Journal::where('is_active', 1)
+            ->orderBy('title')
+            ->get();
+
+        return view('manu-submit', compact('journals'));
+    }
+
+    public function manusubmitStore(Request $request)
+    {
+        $validated = $request->validate([
+            'journal_id' => 'required|exists:journals,id',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'affiliation' => 'nullable|string|max:255',
+            'manuscript_title' => 'required|string|max:255',
+            'abstract' => 'required|string',
+            'keywords' => 'nullable|string',
+            'file' => 'file|mimes:pdf,doc,docx|max:51200',
+            'co_authors.*.name' => 'nullable|string|max:255',
+            'co_authors.*.email' => 'nullable|email|max:255',
+            'declaration_one' => 'required',
+            'declaration_two' => 'required',
+            'declaration_three' => 'required',
+        ]);
+
+        $filePath = $request->file('file')->store('manuscripts', 'public');
+
+        $coAuthors = collect($request->co_authors ?? [])
+            ->filter(function ($author) {
+                return !empty($author['name']) || !empty($author['email']);
+            })
+            ->values()
+            ->toArray();
+
+        ManuScript::create([
+            'journal_id' => $validated['journal_id'],
+            'first_name' => $validated['first_name'],
+            'last_name' => $validated['last_name'],
+            'email' => $validated['email'],
+            'affiliation' => $validated['affiliation'] ?? null,
+            'manuscript_title' => $validated['manuscript_title'],
+            'abstract' => $validated['abstract'],
+            'keywords' => $validated['keywords'] ?? null,
+            'file' => $filePath,
+            'co_authors' => $coAuthors,
+            'declaration_one' => $request->has('declaration_one'),
+            'declaration_two' => $request->has('declaration_two'),
+            'declaration_three' => $request->has('declaration_three'),
+        ]);
+
+        return redirect()->route('journal.submit')->with('success', 'Manuscript submitted successfully.');
     }
 
     public function apc()

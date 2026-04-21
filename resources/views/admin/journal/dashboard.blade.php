@@ -92,7 +92,7 @@
             <p class="mt-2 text-sm text-slate-500">Add indexing items only for this journal.</p>
         </a>
 
-        <a href="{{ route('admin.journal.issues.index', $journal->id) }}"
+        <a href=""
            class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
             <h4 class="text-lg font-semibold text-slate-800">Issue & Volume</h4>
             <p class="mt-2 text-sm text-slate-500">Manage issues and volumes for this journal.</p>

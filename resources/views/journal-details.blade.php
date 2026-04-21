@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="mt-8 flex justify-end">
-                    <a href="{{ route('journal.submit', $journal->id) }}"
+                    <a href="{{ route('journal.submit') }}"
                         class="inline-block bg-teal-600 px-6 py-3 text-base font-semibold text-white shadow hover:bg-teal-700">
                         Submit Manuscript
                     </a>

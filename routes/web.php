@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\JournalController;
 use App\Http\Controllers\Admin\JournalDashboardController;
 use App\Http\Controllers\Admin\JournalIndexingController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\SubmitmanuscriptController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +22,8 @@ Route::get('/journals', [PageController::class, 'journals'])->name('journals');
 Route::get('/journals/{journal}', [PageController::class, 'journalDetails'])->name('journal.details');
 Route::get('/journals/{journal}/{menu}', [PageController::class, 'journalMenuPage'])->name('journal.menu.page');
 
-Route::get('/journals/{journal}/submit-manuscript', [PageController::class, 'submit'])->name('journal.submit');
-Route::post('/journals/{journal}/submit-manuscript', [PageController::class, 'submitStore'])->name('journal.submit.store');
+Route::get('/submit-manuscript', [PageController::class, 'manusubmit'])->name('journal.submit');
+Route::post('/submit-manuscript', [PageController::class, 'manusubmitStore'])->name('journal.submit.store');
 Route::get('/apc', [PageController::class, 'apc'])->name('apc');
 Route::get('/editorial-process', [PageController::class, 'editorial'])->name('editorial');
 Route::get('/membership', [PageController::class, 'membership'])->name('membership');
@@ -47,7 +47,6 @@ Route::prefix('admin')->group(function () {
         | Admin Common Routes
         |--------------------------------------------------------------------------
         */
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
         /*
@@ -108,40 +107,14 @@ Route::prefix('admin')->group(function () {
         | Future Selected Journal Routes
         |--------------------------------------------------------------------------
         */
-        Route::get('/journals/{journal}/eboards', function () {
-            return 'Journal Eboards';
-        })->name('admin.journal.eboards.index');
+        Route::get('/journals/{journal}/submissions', [SubmitmanuscriptController::class, 'index'])
+            ->name('journal.submissions.index');
 
-        Route::get('/journals/{journal}/issues', function () {
-            return 'Journal Issues';
-        })->name('admin.journal.issues.index');
+        Route::get('/journals/{journal}/submissions/{manuscript}', [SubmitmanuscriptController::class, 'show'])
+            ->name('journal.submissions.show');
 
-        Route::get('/journals/{journal}/volumes', function () {
-            return 'Journal Volumes';
-        })->name('admin.journal.volumes.index');
+        Route::delete('/journals/{journal}/submissions/{manuscript}', [SubmitmanuscriptController::class, 'destroy'])
+            ->name('journal.submissions.delete');
 
-        Route::get('/journals/{journal}/submissions', function () {
-            return 'Journal Submissions';
-        })->name('admin.journal.submissions.index');
-
-        Route::get('/journals/{journal}/publications', function () {
-            return 'Journal Publications';
-        })->name('admin.journal.publications.index');
-
-        Route::get('/journals/{journal}/logos', function () {
-            return 'Journal Logos';
-        })->name('admin.journal.logos.index');
-
-        Route::get('/journals/{journal}/contact-settings', function () {
-            return 'Journal Contact Settings';
-        })->name('admin.journal.contact-settings.index');
-
-        Route::get('/journals/{journal}/seo', function () {
-            return 'Journal SEO Settings';
-        })->name('admin.journal.seo.index');
-
-        Route::get('/journals/{journal}/appearance', function () {
-            return 'Journal Appearance';
-        })->name('admin.journal.appearance.index');
     });
 });

@@ -206,7 +206,7 @@
                 Join our global community of researchers and make your work freely accessible worldwide.
             </p>
             <div class="mt-8">
-                <a href="{{ route('submit') }}"
+                <a href="{{ route('journal.submit') }}"
                    class="inline-flex items-center rounded-full bg-white px-8 py-3.5 text-sm font-bold text-blue-800 transition hover:bg-slate-100">
                     Submit Your Manuscript →
                 </a>

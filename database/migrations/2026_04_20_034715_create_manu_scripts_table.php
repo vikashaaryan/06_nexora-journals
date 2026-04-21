@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('manu_scripts', function (Blueprint $table) {
-            $table->id();
+             $table->id();
 
             $table->foreignId('journal_id')->constrained('journals')->onDelete('cascade');
 
@@ -25,12 +25,13 @@ return new class extends Migration
             $table->longText('abstract');
             $table->text('keywords')->nullable();
 
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->json('co_authors')->nullable();
 
             $table->boolean('declaration_one')->default(false);
             $table->boolean('declaration_two')->default(false);
             $table->boolean('declaration_three')->default(false);
+
             $table->timestamps();
         });
     }

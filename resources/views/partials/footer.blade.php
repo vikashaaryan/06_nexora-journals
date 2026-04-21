@@ -44,7 +44,6 @@
                 <div>
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-white">Author Resources</h3>
                     <ul class="mt-5 space-y-3 text-sm">
-                        <li><a href="{{ route('submit') }}" class="transition hover:text-white">Submit Manuscript</a></li>
                         <li><a href="{{ route('guidelines') }}" class="transition hover:text-white">Author Guidelines</a></li>
                         <li><a href="{{ route('editorial') }}" class="transition hover:text-white">Editorial Process</a></li>
                         <li><a href="{{ route('apc') }}" class="transition hover:text-white">APC Information</a></li>

@@ -33,6 +33,10 @@ class Journal extends Model
     {
         return $this->hasMany(Page::class);
     }
+    public function manuscripts()
+{
+    return $this->hasMany(\App\Models\ManuScript::class, 'journal_id');
+}
 
    
 }

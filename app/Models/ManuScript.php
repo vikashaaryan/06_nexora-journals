@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ManuScript extends Model
 {
+ 
+    protected $table = 'manu_scripts';
+
     protected $fillable = [
         'journal_id',
-        'journal_name',
         'first_name',
         'last_name',
         'email',

@@ -139,7 +139,7 @@
                                     Abstracting & Indexing
                                 </a>
 
-                                <a href="{{ route('admin.journal.eboards.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Editorial Board
                                 </a>
@@ -149,7 +149,7 @@
 
                     <!-- Submitted Papers -->
                     @isset($journal)
-                        <a href="{{ route('admin.journal.submissions.index', $journal->id) }}"
+                        <a href="{{ route('journal.submissions.index', $journal->id) }}"
                            class="flex items-center justify-between rounded-lg px-4 py-3 text-[15px] font-medium text-slate-700 transition hover:bg-slate-100">
                             <span class="flex items-center gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500" fill="none"
@@ -164,7 +164,7 @@
 
                     <!-- Article Publication -->
                     @isset($journal)
-                        <a href="{{ route('admin.journal.publications.index', $journal->id) }}"
+                        <a href=""
                            class="flex items-center justify-between rounded-lg px-4 py-3 text-[15px] font-medium text-slate-700 transition hover:bg-slate-100">
                             <span class="flex items-center gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500" fill="none"
@@ -203,11 +203,11 @@
 
                         <div x-show="openIssueVolume" x-cloak class="mt-1 pl-14 pr-3 pb-2 space-y-1">
                             @isset($journal)
-                                <a href="{{ route('admin.journal.issues.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Manage Issues
                                 </a>
-                                <a href="{{ route('admin.journal.volumes.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Manage Volumes
                                 </a>
@@ -241,22 +241,22 @@
 
                         <div x-show="openExtraSettings" x-cloak class="mt-1 pl-14 pr-3 pb-2 space-y-1">
                             @isset($journal)
-                                <a href="{{ route('admin.journal.logos.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Company Logos
                                 </a>
 
-                                <a href="{{ route('admin.journal.contact-settings.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Contact Settings
                                 </a>
 
-                                <a href="{{ route('admin.journal.seo.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     SEO Settings
                                 </a>
 
-                                <a href="{{ route('admin.journal.appearance.index', $journal->id) }}"
+                                <a href=""
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Journal Appearance
                                 </a>
