@@ -139,7 +139,7 @@
                                     Abstracting & Indexing
                                 </a>
 
-                                <a href=""
+                                <a href="{{ route('admin.journal.eboards.index', $journal->id) }}"
                                    class="block rounded-md px-3 py-2 text-[15px] text-slate-700 transition hover:bg-slate-100 hover:text-indigo-700">
                                     Editorial Board
                                 </a>
