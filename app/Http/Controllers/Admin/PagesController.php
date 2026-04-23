@@ -29,18 +29,21 @@ class PagesController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'short_description' => 'nullable|string',
-            'show_eboard_list' => 'required|boolean',
+            'show_eboard_list' => 'required|in:0,1',
             'eboard_limit' => 'nullable|integer|min:1',
-            'show_issue_volume' => 'required|boolean',
+            'show_issue_volume' => 'required|in:0,1',
             'page_link' => 'nullable|string|max:255',
             'long_description' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keyword' => 'nullable|string',
-            'is_active' => 'required|boolean',
+            'is_active' => 'required|in:0,1',
         ]);
 
         $data['journal_id'] = $journal->id;
+        $data['show_eboard_list'] = (bool) $data['show_eboard_list'];
+        $data['show_issue_volume'] = (bool) $data['show_issue_volume'];
+        $data['is_active'] = (bool) $data['is_active'];
 
         Page::create($data);
 
@@ -63,18 +66,21 @@ class PagesController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'short_description' => 'nullable|string',
-            'show_eboard_list' => 'required|boolean',
+            'show_eboard_list' => 'required|in:0,1',
             'eboard_limit' => 'nullable|integer|min:1',
-            'show_issue_volume' => 'required|boolean',
+            'show_issue_volume' => 'required|in:0,1',
             'page_link' => 'nullable|string|max:255',
             'long_description' => 'nullable|string',
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keyword' => 'nullable|string',
-            'is_active' => 'required|boolean',
+            'is_active' => 'required|in:0,1',
         ]);
 
         $data['journal_id'] = $journal->id;
+        $data['show_eboard_list'] = (bool) $data['show_eboard_list'];
+        $data['show_issue_volume'] = (bool) $data['show_issue_volume'];
+        $data['is_active'] = (bool) $data['is_active'];
 
         $page->update($data);
 

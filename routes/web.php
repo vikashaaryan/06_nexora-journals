@@ -25,6 +25,8 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/journals', [PageController::class, 'journals'])->name('journals');
 Route::get('/journals/{journal}', [PageController::class, 'journalDetails'])->name('journal.details');
 Route::get('/journals/{journal}/{menu}', [PageController::class, 'journalMenuPage'])->name('journal.menu.page');
+Route::get('/journals/{journal}/articles/{volume}/{issue}', [PageController::class, 'journalIssueArticles'])
+    ->name('journal.issue.articles');
 
 Route::get('/submit-manuscript', [PageController::class, 'manusubmit'])->name('journal.submit');
 Route::post('/submit-manuscript', [PageController::class, 'manusubmitStore'])->name('journal.submit.store');

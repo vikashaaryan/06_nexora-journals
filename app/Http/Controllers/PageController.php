@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Eboard;
+use App\Models\Issue;
 use App\Models\Journal;
-use App\Models\Menu;
 use App\Models\ManuScript;
+use App\Models\Menu;
+use App\Models\Volume;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -74,17 +79,31 @@ class PageController extends Controller
     public function journals()
     {
         $journals = Journal::where('is_active', 1)->latest()->get();
+
         return view('journals', compact('journals'));
     }
 
     public function journalDetails(Journal $journal)
     {
-        $menus = $journal->menus()->with('page')->get();
+        $menus = $journal->menus()
+            ->with('page')
+            ->where('is_active', 1)
+            ->orderBy('sort_order')
+            ->get();
+
         $activeMenu = $menus->first();
         $page = $activeMenu?->page;
         $indexings = $journal->indexings()->get();
 
-        return view('journal-details', compact('journal', 'menus', 'activeMenu', 'page', 'indexings'));
+        $pageData = $this->buildJournalPageData($journal, $page);
+
+        return view('journal-details', array_merge([
+            'journal' => $journal,
+            'menus' => $menus,
+            'activeMenu' => $activeMenu,
+            'page' => $page,
+            'indexings' => $indexings,
+        ], $pageData));
     }
 
     public function journalMenuPage(Journal $journal, Menu $menu)
@@ -93,12 +112,159 @@ class PageController extends Controller
             abort(404);
         }
 
-        $menus = $journal->menus()->with('page')->get();
+        $menus = $journal->menus()
+            ->with('page')
+            ->where('is_active', 1)
+            ->orderBy('sort_order')
+            ->get();
+
         $activeMenu = $menu;
         $page = $menu->page;
         $indexings = $journal->indexings()->get();
 
-        return view('journal-details', compact('journal', 'menus', 'activeMenu', 'page', 'indexings'));
+        $pageData = $this->buildJournalPageData($journal, $page);
+
+        return view('journal-details', array_merge([
+            'journal' => $journal,
+            'menus' => $menus,
+            'activeMenu' => $activeMenu,
+            'page' => $page,
+            'indexings' => $indexings,
+        ], $pageData));
+    }
+
+    private function buildJournalPageData(Journal $journal, $page): array
+    {
+        $pageKey = '';
+
+        if ($page) {
+            $pageKey = Str::slug($page->page_link ?: $page->title);
+        }
+
+        $eboards = collect();
+        $archiveGroups = collect();
+        $earlyViewArticles = collect();
+        $currentIssueArticles = collect();
+        $latestCurrentIssue = null;
+
+        if ($page && $page->show_eboard_list) {
+            $eboardQuery = Eboard::where('journal_id', $journal->id)
+                ->where('is_active', 1)
+                ->latest();
+
+            if (! empty($page->eboard_limit)) {
+                $eboardQuery->limit((int) $page->eboard_limit);
+            }
+
+            $eboards = $eboardQuery->get();
+        }
+
+        if ($page && $page->show_issue_volume) {
+            $articleBaseQuery = Article::with(['volume', 'issue'])
+                ->where('journal_id', $journal->id)
+                ->where('is_active', 1);
+
+            // archive page
+            if (Str::contains($pageKey, 'archive')) {
+                $archiveArticles = (clone $articleBaseQuery)
+                    ->whereNotNull('year')
+                    ->orderByDesc('year')
+                    ->orderByDesc('created_at')
+                    ->get()
+                    ->groupBy('year');
+
+                $archiveGroups = $archiveArticles->map(function ($items, $year) {
+                    $uniqueItems = $items->filter(function ($article) {
+                        return $article->volume || $article->issue;
+                    })->unique(function ($article) {
+                        return ($article->volume?->name ?? '').'|'.($article->issue?->name ?? '');
+                    })->values();
+
+                    return [
+                        'year' => $year,
+                        'items' => $uniqueItems,
+                    ];
+                })->values();
+            }
+
+            // early view / inpress page
+            if (
+                Str::contains($pageKey, 'early-view') ||
+                Str::contains($pageKey, 'inpress') ||
+                Str::contains($pageKey, 'articles-early-view')
+            ) {
+                $earlyViewArticles = (clone $articleBaseQuery)
+                    ->latest()
+                    ->get();
+            }
+
+            // current issue page
+            if (Str::contains($pageKey, 'current-issue')) {
+                $latestCurrentIssue = Issue::where('journal_id', $journal->id)
+                    ->where('is_active', 1)
+                    ->where('show_on_frontend', 1)
+                    ->latest()
+                    ->first();
+
+                if ($latestCurrentIssue) {
+                    $currentIssueArticles = (clone $articleBaseQuery)
+                        ->where('issue_id', $latestCurrentIssue->id)
+                        ->latest()
+                        ->get();
+                }
+            }
+        }
+
+        return [
+            'pageKey' => $pageKey,
+            'eboards' => $eboards,
+            'archiveGroups' => $archiveGroups,
+            'earlyViewArticles' => $earlyViewArticles,
+            'currentIssueArticles' => $currentIssueArticles,
+            'latestCurrentIssue' => $latestCurrentIssue,
+        ];
+    }
+
+    public function journalIssueArticles(Journal $journal, Volume $volume, Issue $issue)
+    {
+        if ($volume->journal_id != $journal->id || $issue->journal_id != $journal->id) {
+            abort(404);
+        }
+
+        $menus = $journal->menus()
+            ->with('page')
+            ->where('is_active', 1)
+            ->orderBy('sort_order')
+            ->get();
+
+        $activeMenu = $menus->firstWhere(function ($menu) {
+            return $menu->page && Str::contains(
+                Str::slug($menu->page->page_link ?: $menu->page->title),
+                'archive'
+            );
+        });
+
+        $page = $activeMenu?->page;
+        $indexings = $journal->indexings()->get();
+
+        $articles = Article::with(['volume', 'issue'])
+            ->where('journal_id', $journal->id)
+            ->where('volume_id', $volume->id)
+            ->where('issue_id', $issue->id)
+            ->where('is_active', 1)
+            ->latest()
+            ->get();
+
+        return view('journal-issue-articles', compact(
+            'journal',
+            'menus',
+            'activeMenu',
+            'page',
+            'indexings',
+            'volume',
+            'issue',
+            'articles'
+        ));
     }
 
     public function manusubmit()
@@ -121,7 +287,7 @@ class PageController extends Controller
             'manuscript_title' => 'required|string|max:255',
             'abstract' => 'required|string',
             'keywords' => 'nullable|string',
-            'file' => 'file|mimes:pdf,doc,docx|max:51200',
+            'file' => 'nullable|file|mimes:pdf,doc,docx|max:51200',
             'co_authors.*.name' => 'nullable|string|max:255',
             'co_authors.*.email' => 'nullable|email|max:255',
             'declaration_one' => 'required',
@@ -129,11 +295,15 @@ class PageController extends Controller
             'declaration_three' => 'required',
         ]);
 
-        $filePath = $request->file('file')->store('manuscripts', 'public');
+        $filePath = null;
+
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('manuscripts', 'public');
+        }
 
         $coAuthors = collect($request->co_authors ?? [])
             ->filter(function ($author) {
-                return !empty($author['name']) || !empty($author['email']);
+                return ! empty($author['name']) || ! empty($author['email']);
             })
             ->values()
             ->toArray();
@@ -161,6 +331,7 @@ class PageController extends Controller
     {
         $apcCards = [];
         $apcRows = [];
+
         return view('apc', compact('apcCards', 'apcRows'));
     }
 
