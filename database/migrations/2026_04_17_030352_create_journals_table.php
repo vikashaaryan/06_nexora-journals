@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
+             $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->string('title'); // Cardiology and Cardiovascular Medicine
             $table->string('image')->nullable(); // journal image path
             $table->string('issn')->unique(); // 2572-9292

@@ -14,64 +14,89 @@ use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
-    public function home()
-    {
-        $stats = [
-            ['count' => '31', 'label' => 'Journals'],
-            ['count' => '8168', 'label' => 'Articles Published'],
-            ['count' => '1537', 'label' => 'Editorial Members'],
-            ['count' => '19416', 'label' => 'Authors Worldwide'],
-        ];
+   public function home()
+{
+    $stats = [
+        ['count' => Journal::where('is_active', 1)->count(), 'label' => 'Journals'],
+        ['count' => Article::where('is_active', 1)->count(), 'label' => 'Articles Published'],
+        ['count' => Eboard::where('is_active', 1)->count(), 'label' => 'Editorial Members'],
+        ['count' => ManuScript::count(), 'label' => 'Authors Worldwide'],
+    ];
 
-        $indexingBodies = [
-            'PubMed',
-            'PubMed Central',
-            'Crossref',
-            'Google Scholar',
-            'DOAJ',
-            'Creative Commons',
-        ];
+    $indexingBodies = [
+        'PubMed',
+        'PubMed Central',
+        'Crossref',
+        'Google Scholar',
+        'DOAJ',
+        'Creative Commons',
+    ];
 
-        $features = [
-            [
-                'title' => 'Rigorous Peer Review',
-                'description' => 'Every submission undergoes double-blind review by independent domain experts to ensure scientific validity and integrity.',
-                'icon' => '🔒',
-            ],
-            [
-                'title' => 'PubMed Indexed',
-                'description' => 'Multiple journals indexed in PubMed and PMC for maximum discoverability and citation impact worldwide.',
-                'icon' => '🌍',
-            ],
-            [
-                'title' => 'Rapid Publication',
-                'description' => 'Streamlined editorial workflows ensure timely decisions and fast publication of accepted manuscripts.',
-                'icon' => '⚡',
-            ],
-            [
-                'title' => 'Fully Open Access',
-                'description' => 'All content is permanently free to read, share, and reuse under CC BY 4.0 — no paywalls, ever.',
-                'icon' => '🔓',
-            ],
-        ];
+    $features = [
+        [
+            'title' => 'Rigorous Peer Review',
+            'description' => 'Every submission undergoes double-blind review by independent domain experts to ensure scientific validity and integrity.',
+            'icon' => '🔒',
+        ],
+        [
+            'title' => 'PubMed Indexed',
+            'description' => 'Multiple journals indexed in PubMed and PMC for maximum discoverability and citation impact worldwide.',
+            'icon' => '🌍',
+        ],
+        [
+            'title' => 'Rapid Publication',
+            'description' => 'Streamlined editorial workflows ensure timely decisions and fast publication of accepted manuscripts.',
+            'icon' => '⚡',
+        ],
+        [
+            'title' => 'Fully Open Access',
+            'description' => 'All content is permanently free to read, share, and reuse under CC BY 4.0 — no paywalls, ever.',
+            'icon' => '🔓',
+        ],
+    ];
 
-        $subjects = [];
-        $articles = [];
-        $countries = [];
-        $featuredJournals = [];
+    $subjects = \App\Models\Subject::where('is_active', 1)
+        ->latest()
+        ->take(6)
+        ->get();
 
-        return view('home', compact(
-            'stats',
-            'indexingBodies',
-            'features',
-            'subjects',
-            'articles',
-            'countries',
-            'featuredJournals'
-        ));
-    }
+    $articles = Article::with('journal')
+        ->where('is_active', 1)
+        ->latest()
+        ->take(6)
+        ->get();
 
-    public function about()
+    $countries = [
+        'USA & Americas' => ['USA', 'Brazil', 'Canada', 'Mexico'],
+        'Asia-Pacific & Middle East' => ['Australia', 'China', 'India', 'Japan', 'Malaysia', 'Singapore', 'South Korea', 'UAE'],
+        'Europe' => ['Austria', 'Denmark', 'France', 'Germany', 'Italy', 'Netherlands', 'Spain', 'UK'],
+    ];
+
+    $featuredJournals = Journal::where('is_active', 1)
+        ->latest()
+        ->take(12)
+        ->get();
+
+    return view('home', compact(
+        'stats',
+        'indexingBodies',
+        'features',
+        'subjects',
+        'articles',
+        'countries',
+        'featuredJournals'
+    ));
+}
+
+public function subjectJournals(\App\Models\Subject $subject)
+{
+    $journals = Journal::where('subject_id', $subject->id)
+        ->where('is_active', 1)
+        ->latest()
+        ->get();
+
+    return view('subject-journals', compact('subject', 'journals'));
+}    public function about()
     {
         return view('about');
     }
@@ -326,6 +351,48 @@ class PageController extends Controller
 
         return redirect()->route('journal.submit')->with('success', 'Manuscript submitted successfully.');
     }
+    public function search(Request $request)
+{
+    $query = trim($request->get('search', ''));
+
+    $articles = collect();
+    $journals = collect();
+    $subjects = collect();
+
+    if ($query !== '') {
+        $articles = Article::with('journal')
+            ->where('is_active', 1)
+            ->where(function ($q) use ($query) {
+                $q->where('paper_title', 'like', "%{$query}%")
+                  ->orWhere('author_name', 'like', "%{$query}%")
+                  ->orWhere('doi', 'like', "%{$query}%")
+                  ->orWhere('keywords', 'like', "%{$query}%")
+                  ->orWhere('abstract', 'like', "%{$query}%");
+            })
+            ->latest()
+            ->get();
+
+        $journals = Journal::where('is_active', 1)
+            ->where(function ($q) use ($query) {
+                $q->where('title', 'like', "%{$query}%")
+                  ->orWhere('issn', 'like', "%{$query}%")
+                  ->orWhere('nlm_id', 'like', "%{$query}%");
+            })
+            ->latest()
+            ->get();
+
+        $subjects = \App\Models\Subject::where('is_active', 1)
+            ->where(function ($q) use ($query) {
+                $q->where('title', 'like', "%{$query}%")
+                  ->orWhere('short_description', 'like', "%{$query}%")
+                  ->orWhere('description', 'like', "%{$query}%");
+            })
+            ->latest()
+            ->get();
+    }
+
+    return view('search', compact('query', 'articles', 'journals', 'subjects'));
+}
 
     public function apc()
     {

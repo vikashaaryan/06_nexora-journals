@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\JournalDashboardController;
 use App\Http\Controllers\Admin\JournalIndexingController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Admin\SubmitmanuscriptController;
 use App\Http\Controllers\Admin\VolumeController;
 use App\Http\Controllers\PageController;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/subjects/{subject}/journals', [PageController::class, 'subjectJournals'])->name('subject.journals');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/journals', [PageController::class, 'journals'])->name('journals');
 Route::get('/journals/{journal}', [PageController::class, 'journalDetails'])->name('journal.details');
@@ -35,6 +37,7 @@ Route::get('/editorial-process', [PageController::class, 'editorial'])->name('ed
 Route::get('/membership', [PageController::class, 'membership'])->name('membership');
 Route::get('/guidelines', [PageController::class, 'guidelines'])->name('guidelines');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::get('/search', [PageController::class, 'search'])->name('search');
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +57,13 @@ Route::prefix('admin')->group(function () {
         |--------------------------------------------------------------------------
         */
         Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+        Route::get('/admin/subjects', [SubjectController::class, 'index'])->name('admin.subjects.index');
+        Route::get('/admin/subjects/create', [SubjectController::class, 'create'])->name('admin.subjects.create');
+        Route::post('/admin/subjects/store', [SubjectController::class, 'store'])->name('admin.subjects.store');
+        Route::get('/admin/subjects/edit/{subject}', [SubjectController::class, 'edit'])->name('admin.subjects.edit');
+        Route::post('/admin/subjects/update/{subject}', [SubjectController::class, 'update'])->name('admin.subjects.update');
+        Route::delete('/admin/subjects/delete/{subject}', [SubjectController::class, 'destroy'])->name('admin.subjects.delete');
 
         /*
         |--------------------------------------------------------------------------

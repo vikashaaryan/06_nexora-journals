@@ -42,16 +42,24 @@ class Journal extends Model
     {
         return $this->hasMany(Volume::class);
     }
+
     public function issues()
-{
-    return $this->hasMany(\App\Models\Issue::class);
-}
-public function articles()
-{
-    return $this->hasMany(\App\Models\Article::class);
-}
-public function eboards()
-{
-    return $this->hasMany(\App\Models\Eboard::class);
-}
+    {
+        return $this->hasMany(Issue::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function eboards()
+    {
+        return $this->hasMany(Eboard::class);
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Journal;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -15,64 +16,62 @@ class JournalController extends Controller
         return view('admin.journal.journal-manage', compact('journals'));
     }
 
-    public function create()
-    {
-        $journal = null;
-        return view('admin.journal.journal-create', compact('journal'));
+   public function create()
+{
+    $journal = null;
+    $subjects = Subject::where('is_active', 1)->orderBy('title')->get();
+
+    return view('admin.journal.journal-create', compact('journal', 'subjects'));
+}
+
+public function edit(Journal $journal)
+{
+    $subjects = Subject::where('is_active', 1)->orderBy('title')->get();
+
+    return view('admin.journal.journal-create', compact('journal', 'subjects'));
+}
+
+public function store(Request $request)
+{
+    $data = $request->validate([
+        'subject_id' => 'required|exists:subjects,id',
+        'title' => 'required|string|max:255',
+        'issn' => 'required|string|max:255|unique:journals,issn',
+        'nlm_id' => 'nullable|string|max:255',
+        'impact_factor' => 'nullable|numeric',
+        'is_active' => 'required|in:0,1',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $data['image'] = 'storage/' . $request->file('image')->store('journals', 'public');
     }
 
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'issn' => 'required|string|max:255|unique:journals,issn',
-            'nlm_id' => 'nullable|string|max:255',
-            'impact_factor' => 'nullable|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'is_active' => 'required|boolean',
-        ]);
+    Journal::create($data);
 
-        if ($request->hasFile('image')) {
-            $name = time() . '_journal.' . $request->image->extension();
-            $request->image->move(public_path('uploads/journals'), $name);
-            $data['image'] = 'uploads/journals/' . $name;
-        }
+    return redirect()->route('admin.journals')->with('success', 'Journal created successfully.');
+}
 
-        Journal::create($data);
+public function update(Request $request, Journal $journal)
+{
+    $data = $request->validate([
+        'subject_id' => 'required|exists:subjects,id',
+        'title' => 'required|string|max:255',
+        'issn' => 'required|string|max:255|unique:journals,issn,' . $journal->id,
+        'nlm_id' => 'nullable|string|max:255',
+        'impact_factor' => 'nullable|numeric',
+        'is_active' => 'required|in:0,1',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp',
+    ]);
 
-        return redirect()->route('admin.journals')->with('success', 'Journal created successfully.');
+    if ($request->hasFile('image')) {
+        $data['image'] = 'storage/' . $request->file('image')->store('journals', 'public');
     }
 
-    public function edit(Journal $journal)
-    {
-        return view('admin.journal.journal-create', compact('journal'));
-    }
+    $journal->update($data);
 
-    public function update(Request $request, Journal $journal)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'issn' => 'required|string|max:255|unique:journals,issn,' . $journal->id,
-            'nlm_id' => 'nullable|string|max:255',
-            'impact_factor' => 'nullable|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'is_active' => 'required|boolean',
-        ]);
-
-        if ($request->hasFile('image')) {
-            if ($journal->image && File::exists(public_path($journal->image))) {
-                File::delete(public_path($journal->image));
-            }
-
-            $name = time() . '_journal.' . $request->image->extension();
-            $request->image->move(public_path('uploads/journals'), $name);
-            $data['image'] = 'uploads/journals/' . $name;
-        }
-
-        $journal->update($data);
-
-        return redirect()->route('admin.journals')->with('success', 'Journal updated successfully.');
-    }
+    return redirect()->route('admin.journals')->with('success', 'Journal updated successfully.');
+}
 
     public function destroy(Journal $journal)
     {
